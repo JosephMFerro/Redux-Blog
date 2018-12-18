@@ -5,20 +5,18 @@ import { Form, Button } from 'semantic-ui-react';
 class BlogForm extends React.Component {
   state = { name: "", body: "", };
 
-  handleChange = ({target: {name, value}}) => {
-    this.setState({[name]: value });
-  }
-  
-
   handleSubmit = (e) => {
     e.preventDefault();
-    const { dispatch, id, } = this.props;
+    const { dispatch, } = this.props;
     const { name, body, } = this.state;
-    const blog = { name, body, id, };
     dispatch({ type: "ADD_BLOG", blog: { name, body } });
     dispatch({ type: "INC_ID" });
     this.setState({ name: "", body: "", })
     this.props.history.push(`/blogs`);
+  }
+
+  handleChange = ({target: {name, value}}) => {
+    this.setState({[name]: value });
   }
 
   render() {
